@@ -15,8 +15,6 @@ import posixpath
 # EDA Pkgs
 import pandas as pd
 import numpy as np
-import matplotlib
-matplotlib.use('Agg') 
 import joblib
 
 
@@ -56,7 +54,7 @@ from sklearn.preprocessing import MaxAbsScaler
 import itertools
 from sklearn.manifold import TSNE
 from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
+
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
@@ -73,11 +71,6 @@ from sklearn.preprocessing import LabelEncoder
 
 import pickle
 warnings.filterwarnings("ignore")
-
-
-font = {'weight' : 'bold',
-        'size'   : 18}
-matplotlib.rc('font', **font)
 
 from numpy import array
 import keras 
