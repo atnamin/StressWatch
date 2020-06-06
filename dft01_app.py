@@ -6,8 +6,7 @@
 import streamlit as st
 import re
 from IPython.display import display
-#import matplotlib.pyplot as plt
-#get_ipython().run_line_magic('matplotlib', 'inline')
+
 import numpy as np
 import shutil
 import posixpath
