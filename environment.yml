@@ -1,0 +1,16 @@
+name: StressWatch
+channels: 
+- conda-forge
+dependencies:
+- python=3.8
+- conda
+- pandas
+- numpy
+- scipy
+- scikit-learn
+- tensorflow
+- keras
+- matplotlib
+- pip
+- pip:
+  - streamlit
