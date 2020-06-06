@@ -46,7 +46,6 @@ from sklearn.cluster import KMeans
 from keras.models import model_from_json
 import json
 import glob
-import pandas as pd
 from tqdm import tqdm
 from sklearn.preprocessing import StandardScaler, MaxAbsScaler
 from scipy.ndimage import gaussian_filter
@@ -78,7 +77,6 @@ warnings.filterwarnings("ignore")
 
 font = {'weight' : 'bold',
         'size'   : 18}
-import matplotlib
 matplotlib.rc('font', **font)
 
 from numpy import array
