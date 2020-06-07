@@ -9,7 +9,7 @@ dependencies:
 - scipy
 - scikit-learn
 - seaborn
-- keras 
+- keras=2.3.1  
 - joblib
 - matplotlib
 - pip

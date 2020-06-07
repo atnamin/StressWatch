@@ -25,7 +25,7 @@ import joblib
 
 import sys
 import os
-import keras as ks
+import keras
 from keras.callbacks import Callback
 from keras.optimizers import Adam
 from keras.layers import Input, Dense, Lambda
@@ -47,12 +47,12 @@ from keras.models import model_from_json
 import json
 import glob
 #from tqdm import tqdm
-from sklearn.preprocessing import StandardScaler, MaxAbsScaler
-from scipy.ndimage import gaussian_filter
-from collections import defaultdict
-from scipy.ndimage import label
+#from sklearn.preprocessing import StandardScaler, MaxAbsScaler
+#from scipy.ndimage import gaussian_filter
+#from collections import defaultdict
+#from scipy.ndimage import label
 import warnings
-from sklearn.preprocessing import MaxAbsScaler
+#from sklearn.preprocessing import MaxAbsScaler
 import itertools
 #from sklearn.manifold import TSNE
 #from sklearn.decomposition import PCA
