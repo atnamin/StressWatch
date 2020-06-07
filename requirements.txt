@@ -1,4 +1,4 @@
 streamlit==0.60
 matplotlib
-joblib=0.15
-seaborn=0.10
+joblib
+seaborn
