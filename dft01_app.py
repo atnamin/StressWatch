@@ -25,7 +25,7 @@ import joblib
 
 import sys
 import os
-import tensorflow as ts
+#import tensorflow as ts
 import keras
 from keras.callbacks import Callback
 from keras.optimizers import Adam
