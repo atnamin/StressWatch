@@ -10,11 +10,10 @@ dependencies:
 - scikit-learn
 - tensorflow
 - keras
-- seaborn
-- joblib
+- seaborn=0.10.0 
+- joblib=0.15.1
+- matplotlib=3.2.1
 - pickle
 - pip
 - pip:
   - streamlit
-  - joblib
-  - matplotlib
