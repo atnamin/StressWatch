@@ -9,4 +9,5 @@ scipy
 scikit-learn
 pandas
 pip
-pickle
+pickleshare==0.7.5
+
