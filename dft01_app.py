@@ -25,15 +25,15 @@ import joblib
 
 import sys
 import os
-#import keras as ks
-#from keras.callbacks import Callback
-#from keras.optimizers import Adam
-#from keras.layers import Input, Dense, Lambda
-#from keras.models import Model
-#from keras.models import Sequential
-#from keras.models import load_model
-#from keras import backend as K
-#from keras import objectives
+import keras as ks
+from keras.callbacks import Callback
+from keras.optimizers import Adam
+from keras.layers import Input, Dense, Lambda
+from keras.models import Model
+from keras.models import Sequential
+from keras.models import load_model
+from keras import backend as K
+from keras import objectives
 import scipy.io as scio
 import gzip
 from six.moves import cPickle
@@ -43,7 +43,7 @@ from sklearn.model_selection import train_test_split
 import math
 from sklearn import mixture
 from sklearn.cluster import KMeans
-#from keras.models import model_from_json
+from keras.models import model_from_json
 import json
 import glob
 #from tqdm import tqdm
@@ -76,14 +76,14 @@ warnings.filterwarnings("ignore")
 from numpy import array
 #import keras 
 #from tensorflow.python.keras.utils.data_utils import Sequence
-#from keras.models import Sequential
-#from keras.layers import LSTM
-#from keras.layers import Dense
-#from keras.layers import Flatten
-#from keras.layers import ConvLSTM2D
-#from keras.layers import Embedding
-#from keras.layers import Dropout
-#from keras.callbacks import EarlyStopping, ModelCheckpoint
+from keras.models import Sequential
+from keras.layers import LSTM
+from keras.layers import Dense
+from keras.layers import Flatten
+from keras.layers import ConvLSTM2D
+from keras.layers import Embedding
+from keras.layers import Dropout
+from keras.callbacks import EarlyStopping, ModelCheckpoint
 
 
 # In[3]:
@@ -172,8 +172,8 @@ def load_prediction_models(model_file):
 	loaded_model = joblib.load(open(os.path.join(model_file),"rb"))
 	return loaded_model
 
-#import keras.backend.tensorflow_backend as tb
-#tb._SYMBOLIC_SCOPE.value = True
+import keras.backend.tensorflow_backend as tb
+tb._SYMBOLIC_SCOPE.value = True
 
 if choices == 'Prediction':
 	#st.subheader("Likelihood of being in each state")
