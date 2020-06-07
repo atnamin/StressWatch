@@ -1,5 +1,5 @@
 
-matplotlib=3.2.1
-joblib=0.15.1
-seaborn=0.10.0
+matplotlib=3.2
+joblib=0.15
+seaborn=0.10
 streamlit==0.60
