@@ -8,8 +8,6 @@ dependencies:
 - numpy
 - scipy
 - scikit-learn
-- tensorflow
-- keras
 - seaborn 
 - joblib
 - matplotlib

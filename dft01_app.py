@@ -17,7 +17,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import joblib
-import seaborn as sns
+#import seaborn as sns
 
 
 # In[2]:
@@ -25,15 +25,15 @@ import seaborn as sns
 
 import sys
 import os
-import keras as ks
-from keras.callbacks import Callback
-from keras.optimizers import Adam
-from keras.layers import Input, Dense, Lambda
-from keras.models import Model
-from keras.models import Sequential
-from keras.models import load_model
-from keras import backend as K
-from keras import objectives
+#import keras as ks
+#from keras.callbacks import Callback
+#from keras.optimizers import Adam
+#from keras.layers import Input, Dense, Lambda
+#from keras.models import Model
+#from keras.models import Sequential
+#from keras.models import load_model
+#from keras import backend as K
+#from keras import objectives
 import scipy.io as scio
 import gzip
 from six.moves import cPickle
@@ -43,7 +43,7 @@ from sklearn.model_selection import train_test_split
 import math
 from sklearn import mixture
 from sklearn.cluster import KMeans
-from keras.models import model_from_json
+#from keras.models import model_from_json
 import json
 import glob
 from tqdm import tqdm
@@ -54,18 +54,18 @@ from scipy.ndimage import label
 import warnings
 from sklearn.preprocessing import MaxAbsScaler
 import itertools
-from sklearn.manifold import TSNE
-from sklearn.decomposition import PCA
-from sklearn.svm import SVC
-from sklearn.linear_model import LogisticRegression
-from sklearn.neural_network import MLPClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.gaussian_process import GaussianProcessClassifier
-from sklearn.gaussian_process.kernels import RBF
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+#from sklearn.manifold import TSNE
+#from sklearn.decomposition import PCA
+#from sklearn.svm import SVC
+#from sklearn.linear_model import LogisticRegression
+#from sklearn.neural_network import MLPClassifier
+#from sklearn.neighbors import KNeighborsClassifier
+#from sklearn.gaussian_process import GaussianProcessClassifier
+#from sklearn.gaussian_process.kernels import RBF
+#from sklearn.tree import DecisionTreeClassifier
+#from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+#from sklearn.naive_bayes import GaussianNB
+#from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.metrics import accuracy_score, auc, f1_score
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.preprocessing import LabelEncoder
@@ -74,16 +74,16 @@ import pickle
 warnings.filterwarnings("ignore")
 
 from numpy import array
-import keras 
-from tensorflow.python.keras.utils.data_utils import Sequence
-from keras.models import Sequential
-from keras.layers import LSTM
-from keras.layers import Dense
-from keras.layers import Flatten
-from keras.layers import ConvLSTM2D
-from keras.layers import Embedding
-from keras.layers import Dropout
-from keras.callbacks import EarlyStopping, ModelCheckpoint
+#import keras 
+#from tensorflow.python.keras.utils.data_utils import Sequence
+#from keras.models import Sequential
+#from keras.layers import LSTM
+#from keras.layers import Dense
+#from keras.layers import Flatten
+#from keras.layers import ConvLSTM2D
+#from keras.layers import Embedding
+#from keras.layers import Dropout
+#from keras.callbacks import EarlyStopping, ModelCheckpoint
 
 
 # In[3]:

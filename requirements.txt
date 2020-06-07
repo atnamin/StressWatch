@@ -1,9 +1,6 @@
 streamlit==0.60
 matplotlib
 joblib
-seaborn
-tensorflow
-keras
 numpy
 scipy
 scikit-learn
