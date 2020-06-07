@@ -10,6 +10,7 @@ dependencies:
 - scikit-learn
 - tensorflow
 - keras
+- matplotlib
 - matplotlib.pyplot
 - seaborn
 - joblib
