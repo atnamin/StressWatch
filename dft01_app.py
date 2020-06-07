@@ -46,7 +46,7 @@ from sklearn.cluster import KMeans
 #from keras.models import model_from_json
 import json
 import glob
-from tqdm import tqdm
+#from tqdm import tqdm
 from sklearn.preprocessing import StandardScaler, MaxAbsScaler
 from scipy.ndimage import gaussian_filter
 from collections import defaultdict
@@ -97,7 +97,7 @@ def ReadSignals():
     files = [file for file in glob.glob('stress_data/Acc_Temp_EDA/*.csv')]
     column_labels = ["Hr", "Min", "Sec", "Accz", "Accy", "Accx", "Temp", "EDA", "Label"]
     #subjects = set(file.split('/')[-1].split('Acc'))
-    for subject in tqdm(files):
+    for subject in files:
         file = pd.read_csv(subject)#, names = column_labels)
         file.drop(labels = ['Hour', 'Minute', 'Second'], axis =1, inplace = True)
         
@@ -111,7 +111,7 @@ def ReadSignals():
     files2 = [file for file in glob.glob('stress_data/Hr_O2/*.csv')]
     column_labels2 = ["Hr", "Min", "Sec", "Heart rate", "SpO2", "Label"]
     #subjects = set(file.split('/')[-1].split('Acc'))
-    for subject in tqdm(files2):
+    for subject in files2:
         file = pd.read_csv(subject)#, names = column_labels)
         file.drop(labels = ['Hour', 'Minute', 'Second', 'Label'], axis =1, inplace = True)
         file.drop(file.tail(5).index, inplace = True)
