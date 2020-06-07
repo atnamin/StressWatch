@@ -6,8 +6,7 @@
 import streamlit as st
 import re
 from IPython.display import display
-#import matplotlib.pyplot as plt
-#get_ipython().run_line_magic('matplotlib', 'inline')
+
 import numpy as np
 import shutil
 import posixpath
@@ -16,8 +15,8 @@ import posixpath
 # EDA Pkgs
 import pandas as pd
 import numpy as np
+<<<<<<< HEAD
 import matplotlib.pyplot as plt
-matplotlib.use('Agg') 
 import joblib
 import seaborn as sns
 
@@ -74,12 +73,6 @@ from sklearn.preprocessing import LabelEncoder
 
 import pickle
 warnings.filterwarnings("ignore")
-
-
-font = {'weight' : 'bold',
-        'size'   : 18}
-import matplotlib
-matplotlib.rc('font', **font)
 
 from numpy import array
 import keras 
