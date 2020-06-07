@@ -11,16 +11,15 @@ from IPython.display import display
 import numpy as np
 import shutil
 import posixpath
-import seaborn as sns
+
 
 # EDA Pkgs
 import pandas as pd
 import numpy as np
-import seaborn as sns 
-import matplotlib.pyplot as plt 
-import matplotlib
+import matplotlib.pyplot as plt
 matplotlib.use('Agg') 
 import joblib
+import seaborn as sns
 
 
 # In[2]:
@@ -49,7 +48,6 @@ from sklearn.cluster import KMeans
 from keras.models import model_from_json
 import json
 import glob
-import pandas as pd
 from tqdm import tqdm
 from sklearn.preprocessing import StandardScaler, MaxAbsScaler
 from scipy.ndimage import gaussian_filter
@@ -60,7 +58,6 @@ from sklearn.preprocessing import MaxAbsScaler
 import itertools
 from sklearn.manifold import TSNE
 from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
