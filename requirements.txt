@@ -1,5 +1,4 @@
-
-matplotlib=3.2
+streamlit==0.60
+matplotlib-base=3.2
 joblib=0.15
 seaborn=0.10
-streamlit==0.60
