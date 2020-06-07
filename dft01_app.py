@@ -21,10 +21,9 @@ import pickle
 import glob
 #import seaborn as sns
 
-
-# In[2]:
-
-
+from sklearn.metrics import accuracy_score, auc, f1_score
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.preprocessing import LabelEncoder
 import sys
 import os
 '''
@@ -70,9 +69,7 @@ import itertools
 #from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 #from sklearn.naive_bayes import GaussianNB
 #from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.metrics import accuracy_score, auc, f1_score
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.preprocessing import LabelEncoder
+
 
 
 warnings.filterwarnings("ignore")
