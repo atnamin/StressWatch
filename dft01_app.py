@@ -26,9 +26,10 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.preprocessing import LabelEncoder
 import sys
 import os
-'''
+
 import tensorflow as ts
 import keras
+'''
 from keras.callbacks import Callback
 from keras.optimizers import Adam
 from keras.layers import Input, Dense, Lambda
@@ -173,8 +174,7 @@ def load_prediction_models(model_file):
 	loaded_model = joblib.load(open(os.path.join(model_file),"rb"))
 	return loaded_model
 
-#import keras.backend.tensorflow_backend as tb
-import keras.backend as tb
+import keras.backend.tensorflow_backend as tb
 tb._SYMBOLIC_SCOPE.value = True
 
 if choices == 'Prediction':
