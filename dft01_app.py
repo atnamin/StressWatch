@@ -173,7 +173,8 @@ def load_prediction_models(model_file):
 	loaded_model = joblib.load(open(os.path.join(model_file),"rb"))
 	return loaded_model
 
-import keras.backend.tensorflow_backend as tb
+#import keras.backend.tensorflow_backend as tb
+import keras.backend as tb
 tb._SYMBOLIC_SCOPE.value = True
 
 if choices == 'Prediction':
