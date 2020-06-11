@@ -174,7 +174,7 @@ if choices == 'Prediction':
 	df1.Time = pd.to_datetime(df1.Time, format='%H:%M')
 	df1.set_index(['Time'],inplace=True)
 	
-	fig_line, ax1 = plt.subplots(figsize = (15,10), dpi = 600) 
+	fig_line, ax1 = plt.subplots(figsize = (20,15), dpi = 600) 
 	color_lst = {'relax': 'green', 'Pysical Stress': 'orange', 'Cognitive Stress': 'b', 'Emotional Stress' : 'red'}
 
 	#ax1 = sns.lineplot(data = df1), hue = df1.columns)
@@ -184,12 +184,12 @@ if choices == 'Prediction':
 	ax1 = sns.lineplot(data = df1['Physical Stress'], ls = '-', color ='orange', label = 'Physical Stress')
 	
 	ax1.set_xlim(df1.index[0], df1.index[-1])
-	ax1.set_title('Affective state prediction', fontsize = 32)
-	ax1.set_xlabel("Time", fontsize=24)
-	ax1.set_ylabel("Prediction confidence %", fontsize=24)
-	ax1.legend(bbox_to_anchor=(1,1.02), fontsize=24)
-	ax1.tick_params(axis='both', which='major', labelsize=24)
-	ax1.tick_params(axis='both', which='minor', labelsize=16)
+	ax1.set_title('Affective state prediction', fontsize = 40)
+	ax1.set_xlabel("Time", fontsize=34)
+	ax1.set_ylabel("Prediction confidence %", fontsize=34)
+	ax1.legend(bbox_to_anchor=(1,1.02), fontsize=34)
+	ax1.tick_params(axis='both', which='major', labelsize=34)
+	ax1.tick_params(axis='both', which='minor', labelsize=24)
 	ax1.tick_params(axis='x', which='major', rotation=90)
 	
 	#prediction_tbl = pd.DataFrame({'Likelihood': 100*prediction[0, :]}, index = index)
