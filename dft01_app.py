@@ -146,7 +146,7 @@ if choices == 'Prediction':
 			y = np.vstack(signals[user][0]['Label'][(max_interval-1)*N_samples:(max_interval)*N_samples])
 			
 			user_x.append(x)
-			yser_y.append(y[-1])
+			user_y.append(y[-1])
 						
 		return user_x, np.vstack(user_y)
 
