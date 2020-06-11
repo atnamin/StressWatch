@@ -135,15 +135,15 @@ if choices == 'Prediction':
 		user_y = []
 		for i in range(max_interval):
 		
-			x = [np.hstack(signals[user][0]['AccZ'][(max_interval-1)*N_samples:(max_interval)*N_samples]), 
-			    np.hstack(signals[user][0]['AccY'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
-			    np.hstack(signals[user][0]['AccX'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
-			    np.hstack(signals[user][0]['Temp'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
-			    np.hstack(signals[user][0]['EDA'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
-			    np.hstack(signals[user][1]['HeartRate'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
-			    np.hstack(signals[user][1]['SpO2'][(max_interval-1)*N_samples:(max_interval)*N_samples])]
+			x = [np.hstack(signals[user][0]['AccZ'][i*N_samples:(i+1)*N_samples]), 
+			    np.hstack(signals[user][0]['AccY'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][0]['AccX'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][0]['Temp'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][0]['EDA'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][1]['HeartRate'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][1]['SpO2'][i*N_samples:(i+1)*N_samples])]
 
-			y = np.vstack(signals[user][0]['Label'][(max_interval-1)*N_samples:(max_interval)*N_samples])
+			y = np.vstack(signals[user][0]['Label'][i*N_samples:(i+1)*N_samples])
 			
 			user_x.append(x)
 			user_y.append(y[-1])
@@ -181,7 +181,7 @@ if choices == 'Prediction':
 	ax1 = sns.lineplot(data = df1['Cognitive Stress'], ls = '-', color ='b', label = 'Cognitive Stress')
 	ax1 = sns.lineplot(data = df1['Emotional Stress'], ls = '-', color ='red', label = 'Emotional Stress')
 	ax1 = sns.lineplot(data = df1['Physical Stress'], ls = '-', color ='orange', label = 'Physical Stress')
-
+	
 	ax1.set_xlim(df1.index[0], df1.index[-1])
 	ax1.set_title('Affective state prediction', fontsize = 14)
 	ax1.set_xlabel("Time", fontsize=12)
@@ -197,6 +197,6 @@ if choices == 'Prediction':
 	#ax.set_title('Likelihood of each state')
 	#ax.set_ylabel('Probability in %')
 	#ax.set_xlabel('Affective State')
-	#plt.tight_layout()
-	fig_line.tight_layout()
+	#fig_line.tight_layout()
+	
 	st.pyplot(fig_line, use_container_width=True)
