@@ -124,6 +124,7 @@ tb._SYMBOLIC_SCOPE.value = True
 if choices == 'Prediction':
 	#st.subheader("Likelihood of being in each state")
 	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
+	# get data		
 	def create_data(user, N_samples):
 		length = signals[user][0]['EDA'].shape[0]
 		max_interval = length//N_samples
@@ -166,7 +167,7 @@ if choices == 'Prediction':
 	df1.Time = pd.to_datetime(df1.Time, format='%H:%M')
 	df1.set_index(['Time'],inplace=True)
 	
-		fig_line, ax1 = plt.subplots(figsize = (4,3), dpi = 600) 
+	fig_line, ax1 = plt.subplots(figsize = (4,3), dpi = 600) 
 	color_lst = {'relax': 'green', 'Pysical Stress': 'orange', 'Cognitive Stress': 'b', 'Emotional Stress' : 'red'}
 
 	#ax1 = sns.lineplot(data = df1), hue = df1.columns)
