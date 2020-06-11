@@ -131,25 +131,31 @@ if choices == 'Prediction':
 		#for i in range(max_interval): 
 		#i = np.random.choice(max_interval - 1, 1, replace=True)[0]
 		
+		user_x = []
+		user_y = []
+		for i in range(max_interval):
 		
-		x = [np.hstack(signals[user][0]['AccZ'][(max_interval-1)*N_samples:(max_interval)*N_samples]), 
-		    np.hstack(signals[user][0]['AccY'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
-		    np.hstack(signals[user][0]['AccX'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
-		    np.hstack(signals[user][0]['Temp'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
-		    np.hstack(signals[user][0]['EDA'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
-		    np.hstack(signals[user][1]['HeartRate'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
-		    np.hstack(signals[user][1]['SpO2'][(max_interval-1)*N_samples:(max_interval)*N_samples])]
+			x = [np.hstack(signals[user][0]['AccZ'][(max_interval-1)*N_samples:(max_interval)*N_samples]), 
+			    np.hstack(signals[user][0]['AccY'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
+			    np.hstack(signals[user][0]['AccX'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
+			    np.hstack(signals[user][0]['Temp'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
+			    np.hstack(signals[user][0]['EDA'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
+			    np.hstack(signals[user][1]['HeartRate'][(max_interval-1)*N_samples:(max_interval)*N_samples]),
+			    np.hstack(signals[user][1]['SpO2'][(max_interval-1)*N_samples:(max_interval)*N_samples])]
 
-		y = np.vstack(signals[user][0]['Label'][(max_interval-1)*N_samples:(max_interval)*N_samples])
-
-		return x, y[-1]
+			y = np.vstack(signals[user][0]['Label'][(max_interval-1)*N_samples:(max_interval)*N_samples])
+			
+			user_x.append(x)
+			yser_y.append(y[-1])
+						
+		return user_x, np.vstack(user_y)
 
 	def batch_generator(batch_size, N_samples):
 		while True:
 
 			batch = np.array([create_data(user, N_samples)])
 
-			batch_X = np.array([batch[i][0] for i in range(len(batch))])
+			batch_X = np.vstack([batch[i][0] for i in range(len(batch))])
 			batch_Y = np.vstack([batch[i][1] for i in range(len(batch))])
 			
 			# yield batch_X, batch_Y
