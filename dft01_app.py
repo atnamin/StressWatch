@@ -10,7 +10,7 @@ from IPython.display import display
 import numpy as np
 import shutil
 import posixpath
-
+import plotly.graph_objects as go
 
 # EDA Pkgs
 import pandas as pd
@@ -126,7 +126,7 @@ if choices == 'Prediction':
 	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
 	# get data		
 	def create_data(user, N_samples):
-		length = signals[user][0]['EDA'].shape[0]
+		length = min(signals[user][0]['EDA'].shape[0])
 		max_interval = length//N_samples
 		#for i in range(max_interval): 
 		#i = np.random.choice(max_interval - 1, 1, replace=True)[0]
@@ -198,4 +198,5 @@ if choices == 'Prediction':
 	#ax.set_ylabel('Probability in %')
 	#ax.set_xlabel('Affective State')
 	#plt.tight_layout()
-	st.pyplot()
+	fig_line.tight_layout()
+	st.pyplot(fig_line, use_container_width=True)
