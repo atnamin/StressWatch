@@ -126,7 +126,7 @@ if choices == 'Prediction':
 	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
 	# get data		
 	def create_data(user, N_samples):
-		length = min(signals[user][0]['EDA'].shape[0])
+		length = signals[user][0]['EDA'].shape[0]
 		max_interval = length//N_samples
 		#for i in range(max_interval): 
 		#i = np.random.choice(max_interval - 1, 1, replace=True)[0]
