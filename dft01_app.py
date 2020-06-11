@@ -173,7 +173,7 @@ if choices == 'Prediction':
 	df1.Time = pd.to_datetime(df1.Time, format='%H:%M')
 	df1.set_index(['Time'],inplace=True)
 	
-	fig_line, ax1 = plt.subplots(figsize = (4,3), dpi = 600) 
+	fig_line, ax1 = plt.subplots(figsize = (6,4), dpi = 600) 
 	color_lst = {'relax': 'green', 'Pysical Stress': 'orange', 'Cognitive Stress': 'b', 'Emotional Stress' : 'red'}
 
 	#ax1 = sns.lineplot(data = df1), hue = df1.columns)
@@ -197,6 +197,6 @@ if choices == 'Prediction':
 	#ax.set_title('Likelihood of each state')
 	#ax.set_ylabel('Probability in %')
 	#ax.set_xlabel('Affective State')
-	#fig_line.tight_layout()
+	fig_line.tight_layout()
 	
 	st.pyplot(fig_line, use_container_width=True)
