@@ -151,15 +151,15 @@ if choices == 'Prediction':
 		return user_x, np.vstack(user_y)
 
 	def batch_generator(batch_size, N_samples):
-		while True:
+		#while True:
 
-			batch = np.array([create_data(user, N_samples)])
+		batch = [create_data(user, N_samples)]
 
-			batch_X = np.vstack([batch[i][0] for i in range(len(batch))])
-			batch_Y = np.vstack([batch[i][1] for i in range(len(batch))])
-			
-			# yield batch_X, batch_Y
-			return batch_X, batch_Y
+		batch_X = np.vstack([batch[i][0] for i in range(len(batch))])
+		batch_Y = np.vstack([batch[i][1] for i in range(len(batch))])
+		
+		# yield batch_X, batch_Y
+		return batch_X, batch_Y
 
 	load_prediction_models = open("lstm_model.pkl", 'rb') 
 	predictor = joblib.load(load_prediction_models)
