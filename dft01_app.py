@@ -19,7 +19,8 @@ import matplotlib.pyplot as plt
 import joblib
 import pickle
 import glob
-#import seaborn as sns
+import seaborn as sns
+import datetime
 
 from sklearn.metrics import accuracy_score, auc, f1_score
 from sklearn.metrics import classification_report, confusion_matrix
@@ -27,66 +28,9 @@ from sklearn.preprocessing import LabelEncoder
 import sys
 import os
 
-import tensorflow as ts
+import tensorflow as tf
 import keras
-'''
-from keras.callbacks import Callback
-from keras.optimizers import Adam
-from keras.layers import Input, Dense, Lambda
-from keras.models import Model
-from keras.models import Sequential
-from keras.models import load_model
-from keras import backend as K
-from keras import objectives
-import scipy.io as scio
-import gzip
-from six.moves import cPickle
-import sys, random
-from sklearn.model_selection import train_test_split
 
-import math
-from sklearn import mixture
-from sklearn.cluster import KMeans
-from keras.models import model_from_json
-import jhttps://stresswatch.herokuapp.com/son
-
-#from tqdm import tqdm
-#from sklearn.preprocessing import StandardScaler, MaxAbsScaler
-#from scipy.ndimage import gaussian_filter
-#from collections import defaultdict
-#from scipy.ndimage import label
-import warnings
-#from sklearn.preprocessing import MaxAbsScaler
-import itertools
-#from sklearn.manifold import TSNE
-#from sklearn.decomposition import PCA
-#from sklearn.svm import SVC
-#from sklearn.linear_model import LogisticRegression
-#from sklearn.neural_network import MLPClassifier
-#from sklearn.neighbors import KNeighborsClassifier
-#from sklearn.gaussian_process import GaussianProcessClassifier
-#from sklearn.gaussian_process.kernels import RBF
-#from sklearn.tree import DecisionTreeClassifier
-#from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
-#from sklearn.naive_bayes import GaussianNB
-#from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-
-
-
-warnings.filterwarnings("ignore")
-
-from numpy import array
-#import keras 
-#from tensorflow.python.keras.utils.data_utils import Sequence
-from keras.models import Sequential
-from keras.layers import LSTM
-from keras.layers import Dense
-from keras.layers import Flatten
-from keras.layers import ConvLSTM2D
-from keras.layers import Embedding
-from keras.layers import Dropout
-from keras.callbacks import EarlyStopping, ModelCheckpoint
-'''
 
 # In[3]:
 
@@ -214,14 +158,37 @@ if choices == 'Prediction':
 	predictor = joblib.load(load_prediction_models)
 	load_prediction_models.close()
 	
-	x, y = batch_generator(batch_size = 8, N_samples=240)
-	prediction = predictor.predict(x)
-	index = ['Cognitive Stress', 'Emotional Stress', 'Physical Stress', 'Relax']
-	prediction_tbl = pd.DataFrame({'Likelihood': 100*prediction[0, :]}, index = index)
+	x, y = batch_generator(batch_size = 12, N_samples=256)
+	prediction = predictor.predict(x)*100
+	column_names = ['Cognitive Stress', 'Emotional Stress', 'Physical Stress', 'Relax']
+	df1 = pd.DataFrame(prediction, columns=column_names)
+	df1['Time'] = pd.date_range(end='now', periods=8, freq='4min')
+	df1.Time = pd.to_datetime(df1.Time, format='%H:%M')
+	df1.set_index(['Time'],inplace=True)
+	
+		fig_line, ax1 = plt.subplots(figsize = (4,3), dpi = 600) 
+	color_lst = {'relax': 'green', 'Pysical Stress': 'orange', 'Cognitive Stress': 'b', 'Emotional Stress' : 'red'}
+
+	#ax1 = sns.lineplot(data = df1), hue = df1.columns)
+	ax1 = sns.lineplot(data = df1['Relax'], ls = '-', color ='green', label = 'Relax')
+	ax1 = sns.lineplot(data = df1['Cognitive Stress'], ls = '-', color ='b', label = 'Cognitive Stress')
+	ax1 = sns.lineplot(data = df1['Emotional Stress'], ls = '-', color ='red', label = 'Emotional Stress')
+	ax1 = sns.lineplot(data = df1['Physical Stress'], ls = '-', color ='orange', label = 'Physical Stress')
+
+	ax1.set_xlim(df1.index[0], df1.index[-1])
+	ax1.set_title('Affective state prediction', fontsize = 14)
+	ax1.set_xlabel("Time", fontsize=12)
+	ax1.set_ylabel("Prediction confidence %", fontsize=12)
+	ax1.legend(bbox_to_anchor=(1,1.02), fontsize=11)
+	ax1.tick_params(axis='both', which='major', labelsize=11)
+	ax1.tick_params(axis='both', which='minor', labelsize=9)
+	ax1.tick_params(axis='x', which='major', rotation=90)
+	
+	#prediction_tbl = pd.DataFrame({'Likelihood': 100*prediction[0, :]}, index = index)
 	#st.write(prediction_tbl)
-	ax = prediction_tbl.plot(kind='bar', figsize= (5, 7), fontsize=13, legend = False)
-	ax.set_title('Likelihood of each state')
-	ax.set_ylabel('Probability in %')
+	#ax = prediction_tbl.plot(kind='bar', figsize= (5, 7), fontsize=13, legend = False)
+	#ax.set_title('Likelihood of each state')
+	#ax.set_ylabel('Probability in %')
 	#ax.set_xlabel('Affective State')
-	plt.tight_layout()
+	#plt.tight_layout()
 	st.pyplot()
