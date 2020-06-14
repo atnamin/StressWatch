@@ -170,7 +170,11 @@ if choices == 'Prediction':
 	prediction = predictor.predict(x)*100
 	column_names = ['Cognitive Stress', 'Emotional Stress', 'Physical Stress', 'Relax']
 	df1 = pd.DataFrame(prediction, columns=column_names)
+<<<<<<< HEAD
 	df1['Time'] = pd.date_range(end='now', periods=len(df1), freq='4min')
+=======
+	df1['Time'] = pd.date_range(end='now', periods=8, freq='4min')
+>>>>>>> 87577aa6c8ed2450805926dc4ea848bb1dc2ac28
 	df1.Time = pd.to_datetime(df1.Time, format='%H:%M')
 	df1.set_index(['Time'],inplace=True)
 	
