@@ -171,13 +171,12 @@ if choices == 'Prediction':
 	column_names = ['Cognitive Stress', 'Emotional Stress', 'Physical Stress', 'Relax']
 	df1 = pd.DataFrame(prediction, columns=column_names)
 	df1['Time'] = pd.date_range(end='now', periods=len(df1), freq='4min')
-	df1['Time'] = pd.date_range(end='now', periods=8, freq='4min')
+	#df1['Time'] = pd.date_range(end='now', periods=8, freq='4min')
 	df1.Time = pd.to_datetime(df1.Time, format='%H:%M')
 	df1.set_index(['Time'],inplace=True)
 	
+	
 	fig_line, ax1 = plt.subplots(figsize = (20,15), dpi = 300) 
-	color_lst = {'relax': 'green', 'Pysical Stress': 'orange', 'Cognitive Stress': 'b', 'Emotional Stress' : 'red'}
-
 	#ax1 = sns.lineplot(data = df1), hue = df1.columns)
 	ax1 = sns.lineplot(data = df1['Relax'], ls = '-', color ='green', label = 'Relax')
 	ax1 = sns.lineplot(data = df1['Cognitive Stress'], ls = '-', color ='b', label = 'Cognitive Stress')
@@ -200,5 +199,4 @@ if choices == 'Prediction':
 	#ax.set_ylabel('Probability in %')
 	#ax.set_xlabel('Affective State')
 	fig_line.tight_layout()
-	
 	st.pyplot(fig_line, use_container_width=True)
