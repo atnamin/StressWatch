@@ -270,7 +270,7 @@ if choices == 'View Prediction':
 	st.pyplot(fig_line, use_container_width=True)
 	
 	st.subheader('View your affective state at the selected time')
-	pick_time = st.slider(label = None, min_value = 1, max_value = 36, step = 4, format = '%d')
+	pick_time = st.slider(label = 'Minute', min_value = 1, max_value = 36, step = 4, format = '%d')
 	 
 	
 	if pick_time <= 4: 
