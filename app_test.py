@@ -256,7 +256,8 @@ if choices == 'View Prediction':
 	ax1.legend(bbox_to_anchor=(1,1.02), fontsize=34)
 	ax1.tick_params(axis='both', which='major', labelsize=34)
 	ax1.tick_params(axis='both', which='minor', labelsize=24)
-	ax1.tick_params(axis='x', which='major', rotation=90)
+	#ax1.tick_params(axis='x', which='major', rotation=90)
+	ax1.xticks([''])
 	
 	#prediction_tbl = pd.DataFrame({'Likelihood': 100*prediction[0, :]}, index = index)
 	#st.write(prediction_tbl)
@@ -272,10 +273,10 @@ if choices == 'View Prediction':
 	
 	fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300)  
 	
-	if (pick_time <= 4): 
+	if pick_time <= 4: 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[0, :])
 	
-	elif (pick_time > 4) & (pick_time <= 8): 
+	elif pick_time > 4 & pick_time <= 8: 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[1, :])
 		
 	elif pick_time > 8 & pick_time <= 12: 
