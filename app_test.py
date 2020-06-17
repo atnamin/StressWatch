@@ -34,7 +34,8 @@ import keras
 
 # In[3]:
 
-st.title('Welcome to StressWatch a Realtime Stress Predicting App')
+st.title('Welcome to StressWatch')
+st.title('A Realtime Stress Predicting App')
 st.text('Please select from the sidebar "View Signals" to show the raw data or "View Prediction" to show the prediction results')   
 
 @st.cache
@@ -133,7 +134,8 @@ def resampled_signals():
 
 	signal_data = {}
 	for key in (rsmpl_reindx_dic.keys() | hr_o2_dic.keys()):
-	    if key in rsmpl_reindx_dic: signal_data.setdefault(key, []).append(rsmpl_reindx_dic[key])
+	    if key in rsmpl_reindx_dic: signal_data.setdefault(key, []).append(rsmpl_reindx_dic[key])http://54.209.243.195:8501
+
 	    if key in hr_o2_dic: signal_data.setdefault(key, []).append(hr_o2_dic[key])
 
 	return signal_data
@@ -154,10 +156,10 @@ choices = st.sidebar.selectbox("Select Activity",activities)
 
 if choices == 'View Signals':
 	st.subheader("Raw data")
-	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
-
-	'You have selected: ', user
 	signals = ReadSignals()
+	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
+	'You have selected: ', user
+	
 	st.line_chart(signals[user][0]['EDA'])
 	st.line_chart(signals[user][0]['Temp'])
 	st.line_chart(signals[user][1]['HeartRate'])
@@ -177,13 +179,14 @@ tb._SYMBOLIC_SCOPE.value = True
 
 if choices == 'View Prediction':
 	#st.subheader("Likelihood of being in each state")
-	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
+	signal_p = resampled_signals()
+	user = st.sidebar.selectbox('Participant choices', list(signal_p.keys()), 0)
 	'You have selected: ', user
 	# get data		
-	signals = resampled_signals()	
+		
 	
 	def create_data(user, N_samples):
-		length = signals[user][0]['EDA'].shape[0]
+		length = signal_p[user][0]['EDA'].shape[0]
 		max_interval = length//N_samples
 		#for i in range(max_interval): 
 		#i = np.random.choice(max_interval - 1, 1, replace=True)[0]
@@ -192,15 +195,15 @@ if choices == 'View Prediction':
 		user_y = []
 		for i in range(max_interval):
 		
-			x = [np.hstack(signals[user][0]['AccZ'][i*N_samples:(i+1)*N_samples]), 
-			    np.hstack(signals[user][0]['AccY'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals[user][0]['AccX'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals[user][0]['Temp'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals[user][0]['EDA'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals[user][1]['HeartRate'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals[user][1]['SpO2'][i*N_samples:(i+1)*N_samples])]
+			x = [np.hstack(signal_p[user][0]['AccZ'][i*N_samples:(i+1)*N_samples]), 
+			    np.hstack(signal_p[user][0]['AccY'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signal_p[user][0]['AccX'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signal_p[user][0]['Temp'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signal_p[user][0]['EDA'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signal_p[user][1]['HeartRate'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signal_p[user][1]['SpO2'][i*N_samples:(i+1)*N_samples])]
 
-			y = np.vstack(signals[user][0]['Label'][i*N_samples:(i+1)*N_samples])
+			y = np.vstack(signal_p[user][0]['Label'][i*N_samples:(i+1)*N_samples])
 			
 			user_x.append(x)
 			user_y.append(y[-1])
