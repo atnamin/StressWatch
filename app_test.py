@@ -235,8 +235,8 @@ if choices == 'View Prediction':
 	prediction = predictor.predict(x)*100
 	column_names = ['Cognitive Stress', 'Emotional Stress', 'Physical Stress', 'Relax']
 	df1 = pd.DataFrame(prediction, columns=column_names)
-	freq = 4
-	df1['Time'] = pd.date_range(end='now', periods=len(df1), freq=freq)
+	#freq = 4
+	df1['Time'] = pd.date_range(end='now', periods=len(df1), freq=4)
 	#df1['Time'] = pd.date_range(end='now', periods=8, freq='4min')
 	df1.Time = pd.to_datetime(df1.Time, format='%H:%M')
 	df1.set_index(['Time'],inplace=True)
@@ -268,7 +268,7 @@ if choices == 'View Prediction':
 	st.pyplot(fig_line, use_container_width=True)
 	
 	
-	pick_time = st.slider(label ='View your affective state at the selected time', min_value = 1, max_value = 36, value =(1,36), step = freq, format = '%d')
+	pick_time = st.slider(label ='View your affective state at the selected time', min_value = 1, max_value = 36, value =(1,36), step = 4, format = '%d')
 	
 	fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300)  
 	
