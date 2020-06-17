@@ -263,10 +263,10 @@ if choices == 'View Prediction':
 	
 	fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300)  
 	
-	if pick_time <= 4: 
+	if (pick_time <= 4): 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[0, :])
 	
-	elif pick_time > 4 && pick_time <= 8: 
+	elif (pick_time > 4) && (pick_time <= 8): 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[1, :])
 		
 	elif pick_time > 8 && pick_time <= 12: 
