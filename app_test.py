@@ -257,7 +257,7 @@ if choices == 'View Prediction':
 	ax1.tick_params(axis='both', which='major', labelsize=34)
 	ax1.tick_params(axis='both', which='minor', labelsize=24)
 	#ax1.tick_params(axis='x', which='major', rotation=90)
-	ax1.xticks([''])
+	ax1.set_xticks([])
 	
 	#prediction_tbl = pd.DataFrame({'Likelihood': 100*prediction[0, :]}, index = index)
 	#st.write(prediction_tbl)
