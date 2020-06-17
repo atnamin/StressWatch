@@ -40,7 +40,7 @@ st.title('Welcome to StressWatch')
 st.title('A Realtime Stress Predicting App')
 
 
-st.text('Please select from the sidebar "View Signals" to show the raw data or "View Prediction" to show the prediction results')   
+st.header('Please select from the sidebar "View Signals" to show the raw data or "View Prediction" to show the prediction results')   
 
 @st.cache
 def ReadSignals():
@@ -164,7 +164,7 @@ if choices == 'View Signals':
 	st.subheader("Raw data")
 	signals = ReadSignals()
 	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
-	'You have selected: ', user
+	st.subheader('You have selected: ', user)
 	
 	st.line_chart(signals[user][0]['EDA'])
 	st.line_chart(signals[user][0]['Temp'])
@@ -187,7 +187,7 @@ if choices == 'View Prediction':
 	#st.subheader("Likelihood of being in each state")
 	#signal_p = resampled_signals()
 	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
-	'You have selected: ', user
+	st.subheader('You have selected: ', user)
 	# get data		
 		
 	@st.cache
@@ -268,12 +268,12 @@ if choices == 'View Prediction':
 	fig_line.tight_layout()
 	st.pyplot(fig_line, use_container_width=True)
 	
-	
-	pick_time = st.slider(label ='View your affective state at the selected time', min_value = 1, max_value = 36, step = 4, format = '%d')
-	
-	fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300)  
+	st.subheader('View your affective state at the selected time')
+	pick_time = st.slider(min_value = 1, max_value = 36, step = 4, format = '%d')
+	 
 	
 	if pick_time <= 4: 
+		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[0, :])
 		ax2.set_ylabel("Prediction confidence %", fontsize=34)
 		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
@@ -284,6 +284,7 @@ if choices == 'View Prediction':
 		st.pyplot(fig_bar, use_container_width=True)
 	
 	elif pick_time > 4 & pick_time <= 8: 
+		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[1, :])
 		ax2.set_ylabel("Prediction confidence %", fontsize=34)
 		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
@@ -294,6 +295,7 @@ if choices == 'View Prediction':
 		st.pyplot(fig_bar, use_container_width=True)
 				
 	elif pick_time > 8 & pick_time <= 12: 
+		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[2, :])	
 		ax2.set_ylabel("Prediction confidence %", fontsize=34)
 		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
@@ -304,6 +306,7 @@ if choices == 'View Prediction':
 		st.pyplot(fig_bar, use_container_width=True)
 		
 	elif pick_time > 12 & pick_time <= 16: 
+		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[3, :])
 		ax2.set_ylabel("Prediction confidence %", fontsize=34)
 		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
@@ -314,6 +317,7 @@ if choices == 'View Prediction':
 		st.pyplot(fig_bar, use_container_width=True)
 		
 	elif pick_time > 16 & pick_time <= 20: 
+		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[4, :])	
 		ax2.set_ylabel("Prediction confidence %", fontsize=34)
 		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
@@ -324,6 +328,7 @@ if choices == 'View Prediction':
 		st.pyplot(fig_bar, use_container_width=True)
 		
 	elif pick_time > 20 & pick_time <= 24: 
+		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[5, :])
 		ax2.set_ylabel("Prediction confidence %", fontsize=34)
 		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
@@ -334,6 +339,7 @@ if choices == 'View Prediction':
 		st.pyplot(fig_bar, use_container_width=True)
 		
 	elif pick_time > 24 & pick_time <= 28: 
+		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[6, :])	
 		ax2.set_ylabel("Prediction confidence %", fontsize=34)
 		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
@@ -344,6 +350,7 @@ if choices == 'View Prediction':
 		st.pyplot(fig_bar, use_container_width=True)
 		
 	elif pick_time > 28 & pick_time <= 32: 
+		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[7, :])
 		ax2.set_ylabel("Prediction confidence %", fontsize=34)
 		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
@@ -354,6 +361,7 @@ if choices == 'View Prediction':
 		st.pyplot(fig_bar, use_container_width=True)
 		
 	else: 
+		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[-1, :])	
 		ax2.set_ylabel("Prediction confidence %", fontsize=34)
 		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
