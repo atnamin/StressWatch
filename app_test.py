@@ -152,7 +152,7 @@ def resampled_signals():
 # Create a text element and let the reader know the data is loading.
 #data_load_state = st.text('Loading data...')
 # Load the participants signals into the dictionary.
-#signals = ReadSignals()
+signals = ReadSignals()
 # Notify the reader that the data was successfully loaded.
 #data_load_state.text("Done! (using st.cache)")
 
@@ -185,14 +185,14 @@ tb._SYMBOLIC_SCOPE.value = True
 
 if choices == 'View Prediction':
 	#st.subheader("Likelihood of being in each state")
-	signal_p = resampled_signals()
-	user = st.sidebar.selectbox('Participant choices', list(signal_p.keys()), 0)
+	#signal_p = resampled_signals()
+	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
 	'You have selected: ', user
 	# get data		
 		
 	@st.cache
 	def create_data(user, N_samples):
-		length = signal_p[user][0]['EDA'].shape[0]
+		length = signals[user][0]['EDA'].shape[0]
 		max_interval = length//N_samples
 		#for i in range(max_interval): 
 		#i = np.random.choice(max_interval - 1, 1, replace=True)[0]
@@ -201,15 +201,15 @@ if choices == 'View Prediction':
 		user_y = []
 		for i in range(max_interval):
 		
-			x = [np.hstack(signal_p[user][0]['AccZ'][i*N_samples:(i+1)*N_samples]), 
-			    np.hstack(signal_p[user][0]['AccY'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signal_p[user][0]['AccX'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signal_p[user][0]['Temp'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signal_p[user][0]['EDA'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signal_p[user][1]['HeartRate'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signal_p[user][1]['SpO2'][i*N_samples:(i+1)*N_samples])]
+			x = [np.hstack(signals[user][0]['AccZ'][i*N_samples:(i+1)*N_samples]), 
+			    np.hstack(signals[user][0]['AccY'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][0]['AccX'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][0]['Temp'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][0]['EDA'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][1]['HeartRate'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][1]['SpO2'][i*N_samples:(i+1)*N_samples])]
 
-			y = np.vstack(signal_p[user][0]['Label'][i*N_samples:(i+1)*N_samples])
+			y = np.vstack(signals[user][0]['Label'][i*N_samples:(i+1)*N_samples])
 			
 			user_x.append(x)
 			user_y.append(y[-1])
@@ -300,6 +300,13 @@ if choices == 'View Prediction':
 	else: 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[-1, :])	
 		
+	ax2.set_ylabel("Prediction confidence %", fontsize=34)
+	#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
+	ax2.tick_params(axis='both', which='major', labelsize=34)
+	ax2.tick_params(axis='both', which='minor', labelsize=24)
+	ax2.tick_params(axis='x', which='major', rotation=90)
+	fig_bar.tight_layout()	
+	
 	st.pyplot(fig_bar, use_container_width=True)
 		
 		
