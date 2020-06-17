@@ -284,7 +284,7 @@ if choices == 'View Prediction':
 		fig_bar.tight_layout()	
 		st.pyplot(fig_bar, use_container_width=True)
 	
-	elif pick_time > 4 & pick_time <= 8: 
+	elif (pick_time > 4 & pick_time <= 8): 
 		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[1, :])
 		ax2.set_ylabel("Prediction confidence %", fontsize=34)
