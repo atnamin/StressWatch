@@ -266,25 +266,25 @@ if choices == 'View Prediction':
 	if (pick_time <= 4): 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[0, :])
 	
-	elif (pick_time > 4) && (pick_time <= 8): 
+	elif (pick_time > 4) & (pick_time <= 8): 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[1, :])
 		
-	elif pick_time > 8 && pick_time <= 12: 
+	elif pick_time > 8 & pick_time <= 12: 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[2, :])	
 		
-	elif pick_time > 12 && pick_time <= 16: 
+	elif pick_time > 12 & pick_time <= 16: 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[3, :])
 		
-	elif pick_time > 16 && pick_time <= 20: 
+	elif pick_time > 16 & pick_time <= 20: 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[4, :])	
 		
-	elif pick_time > 20 && pick_time <= 24: 
+	elif pick_time > 20 & pick_time <= 24: 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[5, :])
 		
-	elif pick_time > 24 && pick_time <= 28: 
+	elif pick_time > 24 & pick_time <= 28: 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[6, :])	
 		
-	elif pick_time > 28 && pick_time <= 32: 
+	elif pick_time > 28 & pick_time <= 32: 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[7, :])
 		
 	else: 
