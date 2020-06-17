@@ -36,7 +36,10 @@ import keras
 # In[3]:
 
 st.title('Welcome to StressWatch')
+
 st.title('A Realtime Stress Predicting App')
+
+
 st.text('Please select from the sidebar "View Signals" to show the raw data or "View Prediction" to show the prediction results')   
 
 @st.cache
@@ -187,7 +190,7 @@ if choices == 'View Prediction':
 	'You have selected: ', user
 	# get data		
 		
-	
+	@st.cache
 	def create_data(user, N_samples):
 		length = signal_p[user][0]['EDA'].shape[0]
 		max_interval = length//N_samples
@@ -212,7 +215,7 @@ if choices == 'View Prediction':
 			user_y.append(y[-1])
 						
 		return user_x, np.vstack(user_y)
-
+	@st.cache
 	def batch_generator(batch_size, N_samples):
 		#while True:
 
