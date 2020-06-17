@@ -164,7 +164,7 @@ if choices == 'View Signals':
 	st.subheader("Raw data")
 	signals = ReadSignals()
 	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
-	st.subheader('You have selected: ', user)
+	'You have selected: ', user
 	
 	st.line_chart(signals[user][0]['EDA'])
 	st.line_chart(signals[user][0]['Temp'])
@@ -187,7 +187,7 @@ if choices == 'View Prediction':
 	#st.subheader("Likelihood of being in each state")
 	#signal_p = resampled_signals()
 	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
-	st.subheader('You have selected: ', user)
+	'You have selected: ', user
 	# get data		
 		
 	@st.cache
@@ -214,7 +214,7 @@ if choices == 'View Prediction':
 			user_x.append(x)
 			user_y.append(y[-1])
 						
-		return user_x, np.vstack(user_y)
+		return user_x, np.vstStreamlit apps usually start with a call to st.title to set the app’s title. After that, there are 2 heading levels you can use: st.header and st.subheader.ack(user_y)
 	@st.cache
 	def batch_generator(batch_size, N_samples):
 		#while True:
