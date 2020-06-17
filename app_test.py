@@ -214,7 +214,8 @@ if choices == 'View Prediction':
 			user_x.append(x)
 			user_y.append(y[-1])
 						
-		return user_x, np.vstStreamlit apps usually start with a call to st.title to set the app’s title. After that, there are 2 heading levels you can use: st.header and st.subheader.ack(user_y)
+		return user_x, np.vstack(user_y)
+		
 	@st.cache
 	def batch_generator(batch_size, N_samples):
 		#while True:
