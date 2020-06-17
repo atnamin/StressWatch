@@ -271,109 +271,52 @@ if choices == 'View Prediction':
 	
 	st.subheader('View your affective state at the selected time')
 	pick_time = st.slider(label = 'Minute', min_value = 1, max_value = 36, step = 4, format = '%d')
-	 
+	
+	fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300)	 
 	
 	if pick_time <= 4: 
-		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
+		 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[0, :])
-		ax2.set_ylabel("Prediction confidence %", fontsize=34)
-		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
-		ax2.tick_params(axis='both', which='major', labelsize=34)
-		ax2.tick_params(axis='both', which='minor', labelsize=24)
-		ax2.tick_params(axis='x', which='major', rotation=90)
-		fig_bar.tight_layout()	
-		st.pyplot(fig_bar, use_container_width=True)
 	
 	elif (pick_time > 4 and pick_time <= 8): 
-		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
+
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[1, :])
-		ax2.set_ylabel("Prediction confidence %", fontsize=34)
-		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
-		ax2.tick_params(axis='both', which='major', labelsize=34)
-		ax2.tick_params(axis='both', which='minor', labelsize=24)
-		ax2.tick_params(axis='x', which='major', rotation=90)
-		fig_bar.tight_layout()	
-		st.pyplot(fig_bar, use_container_width=True)
-				
+	
 	elif pick_time > 8 and pick_time <= 12: 
-		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
+	
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[2, :])	
-		ax2.set_ylabel("Prediction confidence %", fontsize=34)
-		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
-		ax2.tick_params(axis='both', which='major', labelsize=34)
-		ax2.tick_params(axis='both', which='minor', labelsize=24)
-		ax2.tick_params(axis='x', which='major', rotation=90)
-		fig_bar.tight_layout()	
-		st.pyplot(fig_bar, use_container_width=True)
-		
+	
 	elif pick_time > 12 and pick_time <= 16: 
-		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
+ 
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[3, :])
-		ax2.set_ylabel("Prediction confidence %", fontsize=34)
-		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
-		ax2.tick_params(axis='both', which='major', labelsize=34)
-		ax2.tick_params(axis='both', which='minor', labelsize=24)
-		ax2.tick_params(axis='x', which='major', rotation=90)
-		fig_bar.tight_layout()	
-		st.pyplot(fig_bar, use_container_width=True)
 		
 	elif pick_time > 16 and pick_time <= 20: 
-		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
+
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[4, :])	
-		ax2.set_ylabel("Prediction confidence %", fontsize=34)
-		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
-		ax2.tick_params(axis='both', which='major', labelsize=34)
-		ax2.tick_params(axis='both', which='minor', labelsize=24)
-		ax2.tick_params(axis='x', which='major', rotation=90)
-		fig_bar.tight_layout()	
-		st.pyplot(fig_bar, use_container_width=True)
 		
 	elif pick_time > 20 and pick_time <= 24: 
-		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
+
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[5, :])
-		ax2.set_ylabel("Prediction confidence %", fontsize=34)
-		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
-		ax2.tick_params(axis='both', which='major', labelsize=34)
-		ax2.tick_params(axis='both', which='minor', labelsize=24)
-		ax2.tick_params(axis='x', which='major', rotation=90)
-		fig_bar.tight_layout()	
-		st.pyplot(fig_bar, use_container_width=True)
-		
+
 	elif pick_time > 24 and pick_time <= 28: 
-		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
+	
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[6, :])	
-		ax2.set_ylabel("Prediction confidence %", fontsize=34)
-		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
-		ax2.tick_params(axis='both', which='major', labelsize=34)
-		ax2.tick_params(axis='both', which='minor', labelsize=24)
-		ax2.tick_params(axis='x', which='major', rotation=90)
-		fig_bar.tight_layout()	
-		st.pyplot(fig_bar, use_container_width=True)
 		
 	elif pick_time > 28 and pick_time <= 32: 
-		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[7, :])
-		ax2.set_ylabel("Prediction confidence %", fontsize=34)
-		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
-		ax2.tick_params(axis='both', which='major', labelsize=34)
-		ax2.tick_params(axis='both', which='minor', labelsize=24)
-		ax2.tick_params(axis='x', which='major', rotation=90)
-		fig_bar.tight_layout()	
-		st.pyplot(fig_bar, use_container_width=True)
-		
-	else: 
-		fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300) 
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[-1, :])	
-		ax2.set_ylabel("Prediction confidence %", fontsize=34)
-		#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
-		ax2.tick_params(axis='both', which='major', labelsize=34)
-		ax2.tick_params(axis='both', which='minor', labelsize=24)
-		ax2.tick_params(axis='x', which='major', rotation=90)
-		fig_bar.tight_layout()	
-		st.pyplot(fig_bar, use_container_width=True)
 
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[7, :])
+	
+	else: 
+
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[-1, :])	
 		
-		
+	ax2.set_ylabel("Prediction confidence %", fontsize=34)
+	#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
+	ax2.tick_params(axis='both', which='major', labelsize=34)
+	ax2.tick_params(axis='both', which='minor', labelsize=24)
+	ax2.tick_params(axis='x', which='major', rotation=90)
+	fig_bar.tight_layout()	
+	st.pyplot(fig_bar, use_container_width=True)	
 		
 		
 		
