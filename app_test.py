@@ -134,9 +134,11 @@ def resampled_signals():
 
 	signal_data = {}
 	for key in (rsmpl_reindx_dic.keys() | hr_o2_dic.keys()):
-	    if key in rsmpl_reindx_dic: signal_data.setdefault(key, []).append(rsmpl_reindx_dic[key])http://54.209.243.195:8501
+	    if key in rsmpl_reindx_dic: 
+	    	signal_data.setdefault(key, []).append(rsmpl_reindx_dic[key])
 
-	    if key in hr_o2_dic: signal_data.setdefault(key, []).append(hr_o2_dic[key])
+	    if key in hr_o2_dic: 
+	    	signal_data.setdefault(key, []).append(hr_o2_dic[key])
 
 	return signal_data
 	
