@@ -37,10 +37,12 @@ import keras
 
 st.title('Welcome to StressWatch')
 
-st.title('A Realtime Stress Predicting App')
+st.header('Predicting Stress in Earleir Stages')
 
 
-st.header('Please select from the sidebar "View Signals" to show the raw data or "View Prediction" to show the prediction results')   
+st.subheader('Please select from the sidebar options')   
+
+
 
 @st.cache
 def ReadSignals():
@@ -152,18 +154,21 @@ def resampled_signals():
 # Create a text element and let the reader know the data is loading.
 #data_load_state = st.text('Loading data...')
 # Load the participants signals into the dictionary.
-signals = ReadSignals()
+#signals = ReadSignals()
 # Notify the reader that the data was successfully loaded.
 #data_load_state.text("Done! (using st.cache)")
 
 
-activities = ['View Signals' ,'View Prediction']
+activities = ['View Raw Signals' ,'View Prediction Results']
 choices = st.sidebar.selectbox("Select Activity",activities)
 
-if choices == 'View Signals':
+if choices == 'View Raw Signals':
 	st.subheader("Raw data")
 	signals = ReadSignals()
-	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
+	user = st.sidebar.selectbox('Please select your subject ID or upload your data', list(signals.keys()), 0)
+	
+	st.sidebar.file_uploader(label = 'Please upload your signals data in CSV format', type = 'csv')
+	
 	'You have selected: ', user
 	
 	st.line_chart(signals[user][0]['EDA'])
@@ -183,16 +188,20 @@ def load_prediction_models(model_file):
 import keras.backend.tensorflow_backend as tb
 tb._SYMBOLIC_SCOPE.value = True
 
-if choices == 'View Prediction':
+if choices == 'View Prediction Results':
 	#st.subheader("Likelihood of being in each state")
-	#signal_p = resampled_signals()
-	user = st.sidebar.selectbox('Participant choices', list(signals.keys()), 0)
+	signals_p = resampled_signals()
+	user = st.sidebar.selectbox('Please select your subject ID', list(signals_p.keys()), 0)
+	st.sidebar.file_uploader(label = 'Please upload your signals data in CSV format', type = 'csv')	
+
+	st.text('This plot shows the transition of your affective state over time')	
+	
 	'You have selected: ', user
 	# get data		
 		
 	@st.cache
 	def create_data(user, N_samples):
-		length = signals[user][0]['EDA'].shape[0]
+		length = signals_p[user][0]['EDA'].shape[0]
 		max_interval = length//N_samples
 		#for i in range(max_interval): 
 		#i = np.random.choice(max_interval - 1, 1, replace=True)[0]
@@ -201,15 +210,15 @@ if choices == 'View Prediction':
 		user_y = []
 		for i in range(max_interval):
 		
-			x = [np.hstack(signals[user][0]['AccZ'][i*N_samples:(i+1)*N_samples]), 
-			    np.hstack(signals[user][0]['AccY'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals[user][0]['AccX'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals[user][0]['Temp'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals[user][0]['EDA'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals[user][1]['HeartRate'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals[user][1]['SpO2'][i*N_samples:(i+1)*N_samples])]
+			x = [np.hstack(signals_p[user][0]['AccZ'][i*N_samples:(i+1)*N_samples]), 
+			    np.hstack(signals_p[user][0]['AccY'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals_p[user][0]['AccX'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals_p[user][0]['Temp'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals_p[user][0]['EDA'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals_p[user][1]['HeartRate'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals_p[user][1]['SpO2'][i*N_samples:(i+1)*N_samples])]
 
-			y = np.vstack(signals[user][0]['Label'][i*N_samples:(i+1)*N_samples])
+			y = np.vstack(signals_p[user][0]['Label'][i*N_samples:(i+1)*N_samples])
 			
 			user_x.append(x)
 			user_y.append(y[-1])
@@ -243,12 +252,12 @@ if choices == 'View Prediction':
 	df1.set_index(['Time'],inplace=True)
 	
 	
-	fig_line, ax1 = plt.subplots(figsize = (20,15), dpi = 300) 
+	fig_line, ax1 = plt.subplots(figsize = (24,15), dpi = 600) 
 	#ax1 = sns.lineplot(data = df1), hue = df1.columns)
-	ax1 = sns.lineplot(data = df1['Relax'], ls = '-', color ='green', label = 'Relax')
-	ax1 = sns.lineplot(data = df1['Cognitive Stress'], ls = '-', color ='b', label = 'Cognitive Stress')
-	ax1 = sns.lineplot(data = df1['Emotional Stress'], ls = '-', color ='red', label = 'Emotional Stress')
-	ax1 = sns.lineplot(data = df1['Physical Stress'], ls = '-', color ='orange', label = 'Physical Stress')
+	ax1 = sns.lineplot(data = df1['Relax'], ls = '-', color ='red', label = 'Relax')
+	ax1 = sns.lineplot(data = df1['Cognitive Stress'], ls = '-', color ='navy', label = 'Cognitive Stress')
+	ax1 = sns.lineplot(data = df1['Emotional Stress'], ls = '-', color ='orange', label = 'Emotional Stress')
+	ax1 = sns.lineplot(data = df1['Physical Stress'], ls = '-', color ='green', label = 'Physical Stress')
 	
 	ax1.set_xlim(df1.index[0], df1.index[-1])
 	ax1.set_title('Affective state prediction', fontsize = 40)
@@ -269,10 +278,13 @@ if choices == 'View Prediction':
 	fig_line.tight_layout()
 	st.pyplot(fig_line, use_container_width=True)
 	
-	st.subheader('View your affective state at the selected time')
-	pick_time = st.slider(label = 'Minute', min_value = 1, max_value = 36, step = 4, format = '%d')
+	st.text('The barplot shows the dominant state at the selected time period')
 	
-	fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 300)	 
+	st.subheader('Please select your desired time period using the slider below')
+	
+	pick_time = st.slider(label = 'Four minutes time period', min_value = 1, max_value = 40, step = 4, format = '%d')
+	
+	fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 600)	 
 	
 	if pick_time <= 4: 
 		 
@@ -307,7 +319,6 @@ if choices == 'View Prediction':
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[7, :])
 	
 	else: 
-
 		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[-1, :])	
 		
 	ax2.set_ylabel("Prediction confidence %", fontsize=34)
