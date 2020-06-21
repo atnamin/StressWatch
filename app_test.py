@@ -155,7 +155,7 @@ def resampled_signals():
 #data_load_state = st.text('Loading data...')
 # Load the participants signals into the dictionary.
 
-#signals = ReadSignals()
+signals = ReadSignals()
 #signals_p = ReadSignals()
 # Notify the reader that the data was successfully loaded.
 #data_load_state.text("Done! (using st.cache)")
@@ -166,7 +166,7 @@ choices = st.sidebar.selectbox("Select Activity",activities)
 
 if choices == 'View Raw Signals':
 	st.subheader("Raw data")
-	signals = ReadSignals()
+	#signals = ReadSignals()
 	user = st.sidebar.selectbox('Please select your subject ID or upload your data', list(signals.keys()), 0)
 	
 	st.sidebar.file_uploader(label = 'Please upload your signals data in CSV format', type = 'csv')
@@ -193,8 +193,8 @@ tb._SYMBOLIC_SCOPE.value = True
 if choices == 'View Prediction Results':
 	#st.subheader("Likelihood of being in each state")
 	#signals_p = resampled_signals()
-	signals_p = ReadSignals()
-	user = st.sidebar.selectbox('Please select your subject ID', list(signals_p.keys()), 0)
+	#signals_p = ReadSignals()
+	user = st.sidebar.selectbox('Please select your subject ID', list(signals.keys()), 0)
 	st.sidebar.file_uploader(label = 'Please upload your signals data in CSV format', type = 'csv')	
 
 	st.text('This plot shows the transition of your affective state over time')	
@@ -204,7 +204,7 @@ if choices == 'View Prediction Results':
 		
 	@st.cache
 	def create_data(user, N_samples):
-		length = signals_p[user][0]['EDA'].shape[0]
+		length = signals[user][0]['EDA'].shape[0]
 		max_interval = length//N_samples
 		#for i in range(max_interval): 
 		#i = np.random.choice(max_interval - 1, 1, replace=True)[0]
@@ -213,15 +213,15 @@ if choices == 'View Prediction Results':
 		user_y = []
 		for i in range(max_interval):
 		
-			x = [np.hstack(signals_p[user][0]['AccZ'][i*N_samples:(i+1)*N_samples]), 
-			    np.hstack(signals_p[user][0]['AccY'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals_p[user][0]['AccX'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals_p[user][0]['Temp'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals_p[user][0]['EDA'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals_p[user][1]['HeartRate'][i*N_samples:(i+1)*N_samples]),
-			    np.hstack(signals_p[user][1]['SpO2'][i*N_samples:(i+1)*N_samples])]
+			x = [np.hstack(signals[user][0]['AccZ'][i*N_samples:(i+1)*N_samples]), 
+			    np.hstack(signals[user][0]['AccY'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][0]['AccX'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][0]['Temp'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][0]['EDA'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][1]['HeartRate'][i*N_samples:(i+1)*N_samples]),
+			    np.hstack(signals[user][1]['SpO2'][i*N_samples:(i+1)*N_samples])]
 
-			y = np.vstack(signals_p[user][0]['Label'][i*N_samples:(i+1)*N_samples])
+			y = np.vstack(signals[user][0]['Label'][i*N_samples:(i+1)*N_samples])
 			
 			user_x.append(x)
 			user_y.append(y[-1])
