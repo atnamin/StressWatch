@@ -29,8 +29,8 @@ from sklearn.preprocessing import StandardScaler
 import sys
 import os
 
-import tensorflow as tf
-import tf.keras
+#import tensorflow as tf
+import keras
 
 
 # In[3]:
