@@ -30,7 +30,7 @@ import sys
 import os
 
 import tensorflow as tf
-import keras
+import tf.keras
 
 
 # In[3]:
