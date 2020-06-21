@@ -190,7 +190,8 @@ tb._SYMBOLIC_SCOPE.value = True
 
 if choices == 'View Prediction Results':
 	#st.subheader("Likelihood of being in each state")
-	signals_p = resampled_signals()
+	#signals_p = resampled_signals()
+	signals_p = ReadSignals()
 	user = st.sidebar.selectbox('Please select your subject ID', list(signals_p.keys()), 0)
 	st.sidebar.file_uploader(label = 'Please upload your signals data in CSV format', type = 'csv')	
 
