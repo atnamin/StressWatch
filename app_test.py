@@ -155,8 +155,8 @@ def resampled_signals():
 #data_load_state = st.text('Loading data...')
 # Load the participants signals into the dictionary.
 
-signals = ReadSignals()
-signals_p = ReadSignals()
+#signals = ReadSignals()
+#signals_p = ReadSignals()
 # Notify the reader that the data was successfully loaded.
 #data_load_state.text("Done! (using st.cache)")
 
@@ -166,7 +166,7 @@ choices = st.sidebar.selectbox("Select Activity",activities)
 
 if choices == 'View Raw Signals':
 	st.subheader("Raw data")
-	#signals = ReadSignals()
+	signals = ReadSignals()
 	user = st.sidebar.selectbox('Please select your subject ID or upload your data', list(signals.keys()), 0)
 	
 	st.sidebar.file_uploader(label = 'Please upload your signals data in CSV format', type = 'csv')
@@ -193,7 +193,7 @@ tb._SYMBOLIC_SCOPE.value = True
 if choices == 'View Prediction Results':
 	#st.subheader("Likelihood of being in each state")
 	#signals_p = resampled_signals()
-	#signals_p = ReadSignals()
+	signals_p = ReadSignals()
 	user = st.sidebar.selectbox('Please select your subject ID', list(signals_p.keys()), 0)
 	st.sidebar.file_uploader(label = 'Please upload your signals data in CSV format', type = 'csv')	
 
