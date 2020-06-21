@@ -195,11 +195,12 @@ if choices == 'View Prediction Results':
 	#signals_p = resampled_signals()
 	#signals_p = ReadSignals()
 	user = st.sidebar.selectbox('Please select your subject ID', list(signals_p.keys()), 0)
-	st.sidebar.file_uploader(label = 'Please upload your signals data in CSV format', type = 'csv')	
+	#st.sidebar.file_uploader(label = 'Please upload your signals data in CSV format', type = 'csv')	
 
-	st.text('This plot shows the transition of your affective state over time')	
+	st.write('You have selected: ', user)	
 	
-	'You have selected: ', user
+	'This plot shows the transition of your affective state over time'
+	
 	# get data		
 		
 	@st.cache
@@ -280,12 +281,13 @@ if choices == 'View Prediction Results':
 	#ax.set_xlabel('Affective State')
 	fig_line.tight_layout()
 	st.pyplot(fig_line, use_container_width=True)
-	
-	st.text('The barplot shows the dominant state at the selected time period')
+
 	
 	st.subheader('Please select your desired time period using the slider below')
 	
 	pick_time = st.slider(label = 'Four minutes time period', min_value = 1, max_value = 40, step = 4, format = '%d')
+	
+	'The barplot shows the dominant state at the selected time period'
 	
 	fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 600)	 
 	
