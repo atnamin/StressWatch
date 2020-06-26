@@ -280,7 +280,7 @@ if choices == 'View Prediction Results':
 	#ax.set_ylabel('Probability in %')
 	#ax.set_xlabel('Affective State')
 	plt.tight_layout()
-	st.pyplot(ax1, use_container_width=True)
+	st.pyplot(use_container_width=True)
 
 	
 	st.subheader('Please select your desired time period using the slider below')
