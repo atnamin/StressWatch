@@ -254,38 +254,38 @@ if choices == 'View Prediction Results':
 	#df1['Time'] = pd.date_range(end='now', periods=8, freq='4min')
 	df1.Time = pd.to_datetime(df1.Time, format='%H:%M')
 	df1.set_index(['Time'],inplace=True)
+	colors = ['orange','red','navy','green']
 	
-	
-	fig_line, ax1 = plt.subplots(figsize = (24,15), dpi = 600) 
+#	fig_line, ax1 = plt.subplots(figsize = (24,15), dpi = 600) 
 	#ax1 = sns.lineplot(data = df1), hue = df1.columns)
-	ax1 = sns.lineplot(data = df1['Relax'], ls = '-', color ='red', label = 'Relax')
-	ax1 = sns.lineplot(data = df1['Cognitive Stress'], ls = '-', color ='navy', label = 'Cognitive Stress')
-	ax1 = sns.lineplot(data = df1['Emotional Stress'], ls = '-', color ='orange', label = 'Emotional Stress')
-	ax1 = sns.lineplot(data = df1['Physical Stress'], ls = '-', color ='green', label = 'Physical Stress')
-	
+#	ax1 = sns.lineplot(data = df1['Relax'], ls = '-', color ='red', label = 'Relax')
+#	ax1 = sns.lineplot(data = df1['Cognitive Stress'], ls = '-', color ='navy', label = 'Cognitive Stress')
+#	ax1 = sns.lineplot(data = df1['Emotional Stress'], ls = '-', color ='orange', label = 'Emotional Stress')
+#	ax1 = sns.lineplot(data = df1['Physical Stress'], ls = '-', color ='green', label = 'Physical Stress')
+	ax1 = df1.plot(kind='area', stacked=False, alpha=0.3, figsize=(24,15), color = colors)	
 	ax1.set_xlim(df1.index[0], df1.index[-1])
 	ax1.set_title('Affective state prediction', fontsize = 40)
-	ax1.set_xlabel("Time", fontsize=34)
+	ax1.set_xlabel("Time (H:Min)", fontsize=34, labelpad = 10)
 	ax1.set_ylabel("Prediction confidence %", fontsize=34)
 	ax1.legend(bbox_to_anchor=(1,1.02), fontsize=34)
 	ax1.tick_params(axis='both', which='major', labelsize=34)
 	ax1.tick_params(axis='both', which='minor', labelsize=24)
-	#ax1.tick_params(axis='x', which='major', rotation=90)
+	ax1.tick_params(axis='x', which='major', rotation=90, pad=0.5)
 	ax1.set_xticks([])
-	
+	plt.rcParams["figure.dpi"] = 600
 	#prediction_tbl = pd.DataFrame({'Likelihood': 100*prediction[0, :]}, index = index)
 	#st.write(prediction_tbl)
 	#ax = prediction_tbl.plot(kind='bar', figsize= (5, 7), fontsize=13, legend = False)
 	#ax.set_title('Likelihood of each state')
 	#ax.set_ylabel('Probability in %')
 	#ax.set_xlabel('Affective State')
-	fig_line.tight_layout()
-	st.pyplot(fig_line, use_container_width=True)
+	plt.tight_layout()
+	st.pyplot(ax1, use_container_width=True)
 
 	
 	st.subheader('Please select your desired time period using the slider below')
 	
-	pick_time = st.slider(label = 'Four minutes time period', min_value = 1, max_value = 40, step = 4, format = '%d')
+	pick_time = st.slider(label = 'Four minutes time period', min_value = 1, max_value = 40, step = 1, format = '%d')
 	
 	'The barplot shows the dominant state at the selected time period'
 	
@@ -293,38 +293,38 @@ if choices == 'View Prediction Results':
 	
 	if pick_time <= 4: 
 		 
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[0, :])
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[0, :], palette = colors, alpha=0.3)
 	
 	elif (pick_time > 4 and pick_time <= 8): 
 
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[1, :])
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[1, :], palette = colors, alpha=0.3)
 	
 	elif pick_time > 8 and pick_time <= 12: 
 	
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[2, :])	
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[2, :], palette = colors, alpha=0.3)	
 	
 	elif pick_time > 12 and pick_time <= 16: 
  
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[3, :])
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[3, :], palette = colors, alpha=0.3)
 		
 	elif pick_time > 16 and pick_time <= 20: 
 
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[4, :])	
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[4, :], palette = colors, alpha=0.3)	
 		
 	elif pick_time > 20 and pick_time <= 24: 
 
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[5, :])
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[5, :], palette = colors, alpha=0.3)
 
 	elif pick_time > 24 and pick_time <= 28: 
 	
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[6, :])	
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[6, :], palette = colors, alpha=0.3)	
 		
 	elif pick_time > 28 and pick_time <= 32: 
 
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[7, :])
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[7, :], palette = colors, alpha=0.3)
 	
 	else: 
-		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[-1, :])	
+		ax2 = sns.barplot(x = df1.columns, y = df1.iloc[-1, :], palette = colors, alpha=0.3)	
 		
 	ax2.set_ylabel("Prediction confidence %", fontsize=34)
 	#ax2.legend(bbox_to_anchor=(1,1.02), fontsize=34)
