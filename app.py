@@ -21,7 +21,7 @@ import pickle
 import glob
 import seaborn as sns
 import datetime
-
+import matplotlib.dates as mdates
 from sklearn.metrics import accuracy_score, auc, f1_score
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.preprocessing import LabelEncoder
@@ -264,13 +264,15 @@ if choices == 'View Prediction Results':
 #	ax1 = sns.lineplot(data = df1['Physical Stress'], ls = '-', color ='green', label = 'Physical Stress')
 	ax1 = df1.plot(kind='area', stacked=False, alpha=0.3, figsize=(25,15), color = colors)	
 	ax1.set_xlim(df1.index[0], df1.index[-1])
-	ax1.set_title('Affective state prediction', fontsize = 40)
-	ax1.set_xlabel("Time (H:Min)", fontsize=34, labelpad = 15)
-	ax1.set_ylabel("Prediction confidence %", fontsize=34)
 	ax1.legend(bbox_to_anchor=(1,1.02), fontsize=34)
 	ax1.tick_params(axis='both', which='major', labelsize=34)
 	ax1.tick_params(axis='both', which='minor', labelsize=24)
 	ax1.tick_params(axis='x', which='major', rotation=90, pad=1)
+	ax1.xaxis.set_major_locator(mdates.MinuteLocator(interval=4))
+	ax1.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
+	ax1.set_title('Affective state prediction', fontsize = 40)
+	ax1.set_xlabel("Time (H:Min)", fontsize=34, labelpad = 15)
+	ax1.set_ylabel("Prediction confidence %", fontsize=34)
 	plt.rcParams["figure.dpi"] = 600
 	#prediction_tbl = pd.DataFrame({'Likelihood': 100*prediction[0, :]}, index = index)
 	#st.write(prediction_tbl)
