@@ -262,16 +262,15 @@ if choices == 'View Prediction Results':
 #	ax1 = sns.lineplot(data = df1['Cognitive Stress'], ls = '-', color ='navy', label = 'Cognitive Stress')
 #	ax1 = sns.lineplot(data = df1['Emotional Stress'], ls = '-', color ='orange', label = 'Emotional Stress')
 #	ax1 = sns.lineplot(data = df1['Physical Stress'], ls = '-', color ='green', label = 'Physical Stress')
-	ax1 = df1.plot(kind='area', stacked=False, alpha=0.3, figsize=(24,15), color = colors)	
+	ax1 = df1.plot(kind='area', stacked=False, alpha=0.3, figsize=(25,15), color = colors)	
 	ax1.set_xlim(df1.index[0], df1.index[-1])
 	ax1.set_title('Affective state prediction', fontsize = 40)
-	ax1.set_xlabel("Time (H:Min)", fontsize=34, labelpad = 10)
+	ax1.set_xlabel("Time (H:Min)", fontsize=34, labelpad = 15)
 	ax1.set_ylabel("Prediction confidence %", fontsize=34)
 	ax1.legend(bbox_to_anchor=(1,1.02), fontsize=34)
 	ax1.tick_params(axis='both', which='major', labelsize=34)
 	ax1.tick_params(axis='both', which='minor', labelsize=24)
-	ax1.tick_params(axis='x', which='major', rotation=90, pad=0.5)
-	ax1.set_xticks([])
+	ax1.tick_params(axis='x', which='major', rotation=90, pad=1)
 	plt.rcParams["figure.dpi"] = 600
 	#prediction_tbl = pd.DataFrame({'Likelihood': 100*prediction[0, :]}, index = index)
 	#st.write(prediction_tbl)
@@ -283,11 +282,11 @@ if choices == 'View Prediction Results':
 	st.pyplot(use_container_width=True)
 
 	
-	st.subheader('Please select your desired time period using the slider below')
+	st.subheader('Please select your desired time using the slider below')
 	
-	pick_time = st.slider(label = 'Four minutes time period', min_value = 1, max_value = 40, step = 1, format = '%d')
+	pick_time = st.slider(label = 'Minutes', min_value = 1, max_value = 40, step = 1, format = '%d')
 	
-	'The barplot shows the dominant state at the selected time period'
+	'The barplot shows the dominant state at the selected time'
 	
 	fig_bar, ax2 = plt.subplots(figsize = (20,15), dpi = 600)	 
 	
