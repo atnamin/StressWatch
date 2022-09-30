@@ -1,6 +1,6 @@
 streamlit==0.61
 matplotlib==3.2
-joblib==0.15
+joblib==1.2.0
 numpy==1.18
 scipy==1.4
 scikit-learn==0.23
